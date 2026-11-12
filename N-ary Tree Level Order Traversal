@@ -1,0 +1,29 @@
+
+class Solution {
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> result = new ArrayList<>(); // Stores each level.
+
+        if (root == null) return result;           // Returns empty result for no tree.
+
+        Queue<Node> queue = new LinkedList<>();    // Creates a first-in, first-out queue.
+        queue.add(root);                           // Adds the root first.
+
+        while (!queue.isEmpty()) {                 // Continues while nodes remain.
+            int size = queue.size();               // Counts nodes on this level.
+            List<Integer> level = new ArrayList<>(); // Stores this level's values.
+
+            for (int i = 0; i < size; i++) {        // Processes the current level only.
+                Node curr = queue.poll();          // Removes the next node.
+                level.add(curr.val);               // Adds its value to this level.
+
+                for (Node child : curr.children) { // Visits each child.
+                    queue.add(child);              // Adds children for the next level.
+                }
+            }
+
+            result.add(level);                     // Saves the completed level.
+        }
+
+        return result;                             // Returns all levels.
+    }
+}
