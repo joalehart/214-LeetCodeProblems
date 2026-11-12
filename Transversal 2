@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> preorder(Node root) {
+        List<Integer> result = new ArrayList<>(); // Stores the preorder values.
+        preorderHelper(root, result);             // Starts the recursive traversal.
+        return result;                             // Returns the completed list.
+    }
+
+    private void preorderHelper(Node root, List<Integer> result) {
+        if (root == null) return;                  // Stops at an empty node.
+
+        result.add(root.val);                      // Adds the root before its children.
+
+        for (Node child : root.children) {          // Visits each child in order.
+            preorderHelper(child, result);         // Traverses that child's subtree.
+        }
+    }
+}
