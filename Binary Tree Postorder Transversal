@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> postorder(Node root) {
+        List<Integer> result = new ArrayList<>(); // Stores the postorder values.
+        postorderHelper(root, result);            // Starts the recursive traversal.
+        return result;                            // Returns the completed list.
+    }
+
+    private void postorderHelper(Node root, List<Integer> result) {
+        if (root == null) return;                 // Stops at an empty node.
+
+        for (Node child : root.children) {         // Visits each child first.
+            postorderHelper(child, result);        // Traverses that child's subtree.
+        }
+
+        result.add(root.val);                     // Adds the root after its children.
+    }
+}
